@@ -1,5 +1,5 @@
 # useful-scripts
-Some useful bash scripts for that make life easier
+Some useful bash scripts for making life easier
 
 
 ## fssh
