@@ -1,0 +1,63 @@
+#
+# bash script for creating a virtual host in apache
+#
+
+echo "Type in the domain of the new virtual host: "
+read domain
+
+echo "Type in the DocumentRoot of the server (f. e. /Users/$LOGNAME/www/contao/web): "
+read document_root
+
+vhost_file="/usr/local/etc/httpd/extra/httpd-vhosts.conf"
+
+echo "The following vhost will be added to $vhost_file"
+echo
+echo "<VirtualHost *:80>"
+echo "    ServerName $domain"
+echo "    ServerAlias $domain"
+echo "    ServerAdmin webmaster@localhost"
+echo "    DocumentRoot $document_root"
+echo "    <Directory $document_root>"
+echo "        Options Indexes FollowSymlinks MultiViews"
+echo "        AllowOverride All"
+echo "        Order allow,deny"
+echo "        allow from all"
+echo "    </Directory>"
+echo "    ErrorLog \"logs/$domain-error_log\""
+echo "    CustomLog \"logs/$domain-access_log\" common"
+echo "</VirtualHost>"
+
+echo
+echo "do you want to add this output to $vhost_file (y / n)?"
+read answer
+if [ "$answer" = "y" ]
+then
+    echo "" >> $vhost_file
+    echo "<VirtualHost *:80>" >> $vhost_file
+    echo "    ServerName $domain" >> $vhost_file
+    echo "    ServerAlias $domain" >> $vhost_file
+    echo "    ServerAdmin webmaster@localhost" >> $vhost_file
+    echo "    DocumentRoot $document_root" >> $vhost_file
+    echo "    <Directory $document_root>" >> $vhost_file
+    echo "        Options Indexes FollowSymlinks MultiViews" >> $vhost_file
+    echo "        AllowOverride All" >> $vhost_file
+    echo "        Order allow,deny" >> $vhost_file
+    echo "        allow from all" >> $vhost_file
+    echo "    </Directory>" >> $vhost_file
+    echo "    ErrorLog \"logs/$domain-error_log\"" >> $vhost_file
+    echo "    CustomLog \"logs/$domain-access_log\" common" >> $vhost_file
+    echo "</VirtualHost>" >> $vhost_file
+fi
+
+echo
+cat $vhost_file
+
+echo "do you want to edit $vhost_file?"
+read answer
+if [ "$answer" = "y" ]
+then    
+    open -e $vhost_file
+fi
+
+echo
+echo "done!"
