@@ -1,25 +1,24 @@
 #
 # shell script for fast ssh access
-#
+# this script uses the .ssh/config file (do "man ssh_config" for more information)
+# 
 # usage: fssh
 # then select the number of the ssh you want
 # 
-#
 
 # get the file path of the stored servers
-file="/etc/fssh/servers.conf"
+file="/Users/$LOGNAME/.ssh/config"
 
 # load the servers list in variables
-source $file
 
-server_list=`cut -d '=' -f1 $file`
+server_list=`grep "Host " $file | cut -d' ' -f2-`
 
 select server in $server_list
 do
 	echo "using $server"
 	
 	# login with the variable
-	ssh ${!server}
+	ssh $server
 	
 	# leave the script
 	exit
