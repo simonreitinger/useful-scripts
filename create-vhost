@@ -57,7 +57,7 @@ echo "Enter the Order value: (default: allow,deny)"
 read order
 if [[ !$order ]]
 then
-	order="All"
+	order="allow,deny"
 fi
 
 # permission
