@@ -17,13 +17,4 @@ fssh stands for "fast ssh" and lets you configure your ssh access for different 
 - type in the number of the server you want to go to
 
 ### Configuration
-- Config file path: /etc/fssh/servers.conf
-- every line must have the following syntax: sshname=username@server
-- this file will be imported by using `source` so the variables are available there
-
-## create-vhost
-create-vhost is a shortcut for creating a vhost (specifically for homebrew apache environments)
-
-### Usage
-- `create-vhost`
-- You are asked for some configuration. Most of the parameters have a default value.
+The config file is ~/.ssh/config for ssh compatibility
