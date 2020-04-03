@@ -7,7 +7,7 @@
 # 
 
 # get the file path of the stored servers
-file="/Users/$LOGNAME/.ssh/config"
+file="$HOME/.ssh/config"
 
 # load the servers list in variables
 
